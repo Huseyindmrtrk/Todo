@@ -35,16 +35,6 @@
 			path = Todo;
 			sourceTree = "<group>";
 		};
-		258AF55E2C99C791006BDA96 /* TodoTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TodoTests;
-			sourceTree = "<group>";
-		};
-		258AF5682C99C791006BDA96 /* TodoUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TodoUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				258AF54D2C99C790006BDA96 /* Todo */,
-				258AF55E2C99C791006BDA96 /* TodoTests */,
-				258AF5682C99C791006BDA96 /* TodoUITests */,
 				258AF54C2C99C790006BDA96 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				258AF55D2C99C791006BDA96 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				258AF55E2C99C791006BDA96 /* TodoTests */,
-			);
 			name = TodoTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				258AF5672C99C791006BDA96 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				258AF5682C99C791006BDA96 /* TodoUITests */,
 			);
 			name = TodoUITests;
 			packageProductDependencies = (

@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct TodoDetail: View {
+    var todo: String
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(todo)
+                .font(.largeTitle)
+                .padding()
+            Spacer()
+        }
+        .navigationTitle("Madde Detayı")
     }
 }
-
-#Preview {
-    TodoDetail()
-}
+//
+//#Preview {
+//    TodoDetail()
+//}
