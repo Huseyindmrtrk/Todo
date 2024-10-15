@@ -6,39 +6,43 @@
 //
 import SwiftUI
 
-struct AddListView: View {
+struct AddNewListView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var listName = "" // Liste adı state
-    
+    @State private var listName: String = ""
+    @State private var showToast: Bool = false
+
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Yeni Liste Adı", text: $listName)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button(action: {
-                    // Liste adını kaydet ve ekranı kapat
-                    if !listName.isEmpty {
-                        // Save the list
-                        // Burada listeyi HomeList'e ekleyelim
-                        presentationMode.wrappedValue.dismiss()
+                Form {
+                    Section() {
+                        TextField("Liste adını girin", text: $listName)
                     }
-                }) {
-                    Text("Oluştur")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+
+                    Button("Oluştur") {
+                        print("Yeni liste oluşturuldu: \(listName)")
+                        showToast = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            showToast = false
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                 }
-                .padding()
-                
-                Spacer()
+                .navigationTitle("Yeni Liste Ekle")
+                .navigationBarItems(trailing: Button("İptal") {
+                    presentationMode.wrappedValue.dismiss()
+                })
+
+                if showToast {
+                    ToastView(message: "\(listName) Listesi oluşturuldu kenks")
+                        .transition(.slide)
+                        .animation(.easeInOut)
+                }
             }
-            .navigationTitle("Yeni Liste Oluştur")
-            .navigationBarItems(trailing: Button("Kapat") {
-                presentationMode.wrappedValue.dismiss()
-            })
         }
     }
+}
+
+#Preview {
+    AddNewListView()
 }
