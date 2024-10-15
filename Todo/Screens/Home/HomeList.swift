@@ -1,16 +1,9 @@
-//
-//  HomeList.swift
-//  Todo
-//
-//  Created by Hüseyin Demirtürk on 15.10.2024.
-//
-
 import SwiftUI
 
 struct HomeList: View {
     @State private var showFavoritesOnly = false
     @State private var isFavorited = Array(repeating: false, count: 5)
-    let items = ["test", "test 2", "test 3", "test 4", "test 5"]
+    let items: [String]
     
     var body: some View {
         List {
@@ -29,6 +22,6 @@ struct HomeList: View {
 
 struct HomeList_Previews: PreviewProvider {
     static var previews: some View {
-        HomeList()
+        HomeList(items: ["test", "test 2", "test 3"])
     }
 }

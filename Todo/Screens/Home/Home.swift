@@ -2,11 +2,12 @@ import SwiftUI
 
 struct Home: View {
     @State private var showingAddListView = false
+    @State private var items = [String]()
 
     var body: some View {
         NavigationView {
             VStack {
-                HomeList()
+                HomeList(items: items)
                 
                 Button(action: {
                     showingAddListView.toggle()
@@ -22,8 +23,10 @@ struct Home: View {
             }
         }
         .sheet(isPresented: $showingAddListView) {
-            AddNewListView()
-                .presentationDetents([.medium, .large])
+            AddNewListView { newItem in
+                items.append(newItem)
+            }
+            .presentationDetents([.medium, .large])
         }
     }
 }
