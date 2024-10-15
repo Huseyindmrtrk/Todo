@@ -1,15 +1,10 @@
-//
-//  NewListView.swift
-//  Todo
-//
-//  Created by Hüseyin Demirtürk on 15.10.2024.
-//
 import SwiftUI
 
 struct AddNewListView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var listName: String = ""
     @State private var showToast: Bool = false
+    var onAdd: (String) -> Void
 
     var body: some View {
         NavigationView {
@@ -21,6 +16,7 @@ struct AddNewListView: View {
 
                     Button("Oluştur") {
                         print("Yeni liste oluşturuldu: \(listName)")
+                        onAdd(listName)
                         showToast = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             showToast = false
@@ -34,7 +30,7 @@ struct AddNewListView: View {
                 })
 
                 if showToast {
-                    ToastView(message: "\(listName) Listesi oluşturuldu kenks")
+                    ToastView(message: "\(listName) Listesi oluşturuldu")
                         .transition(.slide)
                         .animation(.easeInOut)
                 }
@@ -44,5 +40,5 @@ struct AddNewListView: View {
 }
 
 #Preview {
-    AddNewListView()
+    AddNewListView { _ in }
 }

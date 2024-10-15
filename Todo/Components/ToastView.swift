@@ -4,6 +4,7 @@
 //
 //  Created by Hüseyin Demirtürk on 15.10.2024.
 //
+
 import SwiftUI
 struct ToastView: View {
     let message: String
@@ -18,10 +19,7 @@ struct ToastView: View {
             .padding(.bottom, 20)
             .frame(maxWidth: .infinity, alignment: .center)
             .shadow(radius: 10)
-            .offset(y: 0) // Ekranın altında görünüm
+            .offset(y: 0)
     }
 }
 
-#Preview {
-    AddNewListView()
-}
