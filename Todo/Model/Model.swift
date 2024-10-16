@@ -10,31 +10,18 @@ import Foundation
 struct ListItem: Codable {
     let name: String
 }
+struct ListStorage {
+    static let key = "savedLists"
 
-class FileManagerHelper {
-    static let shared = FileManagerHelper()
-
-    private init() {}
-
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
+    // Liste adlarını kaydetme
+    static func saveList(_ listName: String) {
+        var currentLists = getLists()
+        currentLists.append(listName)
+        UserDefaults.standard.set(currentLists, forKey: key)
     }
 
-    func saveLists(_ lists: [ListItem]) {
-        let url = getDocumentsDirectory().appendingPathComponent("lists.json")
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(lists) {
-            try? data.write(to: url)
-        }
-    }
-
-    func loadLists() -> [ListItem] {
-        let url = getDocumentsDirectory().appendingPathComponent("lists.json")
-        if let data = try? Data(contentsOf: url),
-           let lists = try? JSONDecoder().decode([ListItem].self, from: data) {
-            return lists
-        }
-        return []
+    // Kayıtlı liste adlarını alma
+    static func getLists() -> [String] {
+        return UserDefaults.standard.stringArray(forKey: key) ?? []
     }
 }
