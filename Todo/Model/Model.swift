@@ -25,3 +25,9 @@ struct ListStorage {
         return UserDefaults.standard.stringArray(forKey: key) ?? []
     }
 }
+
+struct TodoItem: Identifiable, Codable {
+    let id = UUID()
+    var title: String
+    var isCompleted: Bool = false
+}
