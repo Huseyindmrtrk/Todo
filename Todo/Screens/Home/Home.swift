@@ -21,13 +21,23 @@ struct Home: View {
                 }
                 .padding(.bottom)
             }
+            .onAppear(perform: loadItems) 
         }
         .sheet(isPresented: $showingAddListView) {
             AddNewListView { newItem in
                 items.append(newItem)
+                saveItems()
             }
             .presentationDetents([.medium, .large])
         }
+    }
+    
+    private func saveItems() {
+        UserDefaults.standard.set(items, forKey: "todoItems")
+    }
+
+    private func loadItems() {
+        items = UserDefaults.standard.stringArray(forKey: "todoItems") ?? []
     }
 }
 
